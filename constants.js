@@ -1,62 +1,71 @@
-const MOD = ['ctrl', 'alt', 'cmd'];
+const MOD = ['alt', 'ctrl', 'cmd'];
 const MOD_S = [...MOD, 'shift'];
-let VERBOSE = false;
-const HALF_CORRECTION = 6; // Fix padding issues for half screen windows
+let VERBOSE = true;
+const HALF_CORRECTION = -2; // Fix padding issues for half screen windows
 
 var scr = Screen.main().flippedVisibleFrame();
+
 // Padding Values
-var paddingTop = 35;
+var paddingTop = 15;
 var paddingLeft = 15;
 var paddingRight = 30;
 var paddingBottom = 25;
 var paddingCenter = 10;
 var paddingMiddle = 20;
-// Computed sizes
-var halfWidth = ((scr.width - paddingLeft) - paddingRight) / 2;
-var halfHeight = (((scr.height - paddingTop) - paddingBottom) / 2) + HALF_CORRECTION;
 
-var windowLocations = {
+const focusIgnoredApps = [
+  "iTerm2"
+];
+
+var windowLocations = function(scr) {
+  scr = scr.flippedVisibleFrame();
+  // Computed sizes
+  var rightWidth = ((scr.width - paddingLeft) - paddingRight) * .33;
+  var leftWidth = ((scr.width - paddingLeft) - paddingRight) * .67;
+  var halfHeight = (((scr.height - paddingTop) - paddingBottom) / 2) + HALF_CORRECTION;
+  return {
     full: {
-        y: paddingTop,
-        x: paddingLeft,
+        y: scr.y + paddingTop,
+        x: scr.x + paddingLeft,
         width: scr.width - paddingRight,
         height: scr.height - paddingBottom
     },
     left: {
-        y: paddingTop,
-        x: paddingLeft,
-        width: halfWidth - paddingCenter,
+        y: scr.y + paddingTop,
+        x: scr.x + paddingLeft,
+        width: leftWidth - paddingCenter,
         height: scr.height - paddingBottom
     },
     right: {
-        y: paddingTop,
-        x: (halfWidth + paddingLeft) + paddingCenter,
-        width: halfWidth,
+        y: scr.y + paddingTop,
+        x: scr.x + (leftWidth + paddingLeft) + paddingCenter,
+        width: rightWidth,
         height: scr.height - paddingBottom
     },
     //Corners
     topRight: {
-        y: paddingTop,
-        x: (halfWidth + paddingLeft) + paddingCenter,
-        width: halfWidth,
+        y: scr.y + paddingTop,
+        x: scr.x + (leftWidth + paddingLeft) + paddingCenter,
+        width: rightWidth,
         height: halfHeight
     },
     bottomRight: {
-        y: (halfHeight + paddingTop) + paddingMiddle,
-        x: (halfWidth + paddingLeft) + paddingCenter,
-        width: halfWidth,
+        y: scr.y + (halfHeight + paddingTop) + paddingMiddle,
+        x: scr.x + (leftWidth + paddingLeft) + paddingCenter,
+        width: rightWidth,
         height: halfHeight
     },
     topLeft: {
-        y: paddingTop,
-        x: paddingLeft,
-        width: halfWidth - paddingCenter,
+        y: scr.y + paddingTop,
+        x: scr.x + paddingLeft,
+        width: leftWidth - paddingCenter,
         height: halfHeight
     },
     bottomLeft: {
-        y: (halfHeight + paddingTop) + paddingMiddle,
-        x: paddingLeft,
-        width: halfWidth - paddingCenter,
+        y: scr.y + (halfHeight + paddingTop) + paddingMiddle,
+        x: scr.x + paddingLeft,
+        width: leftWidth - paddingCenter,
         height: halfHeight
     }
+  }
 }
