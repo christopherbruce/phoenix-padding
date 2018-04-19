@@ -28,6 +28,17 @@ var rightHalf = new Key('right', MOD, () => {
   Window.focused().setFrame(windowLocations(Screen.main()).right);
 });
 
+// Move focused window to left or right half of next display
+var leftHalfND = new Key('left', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'left half of next display' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).left);
+});
+
+var rightHalfND = new Key('right', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'right half of next display' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).right);
+});
+
 // Move focused window to bottom or top half
 var moveUp = new Key('up', MOD, () => {
   const windowX = Math.round(Window.focused().topLeft().x);
@@ -57,29 +68,56 @@ var moveDown = new Key('down', MOD, () => {
 
 // Move focused window to corners
 var topRight = new Key(']', MOD, () => {
-  if ( VERBOSE ) { movementModal( 'top right' ); }
+  if ( VERBOSE ) { movementModal( 'top right of next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main()).topRight);
 });
 
 var topLeft = new Key('[', MOD, () => {
-  if ( VERBOSE ) { movementModal( 'top left' ); }
+  if ( VERBOSE ) { movementModal( 'top left of next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main()).topLeft);
 });
 
 var bottomRight = new Key('\'', MOD, () => {
-  if ( VERBOSE ) { movementModal( 'bottom right' ); }
+  if ( VERBOSE ) { movementModal( 'bottom right of next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main()).bottomRight);
 });
 
 var bottomLeft = new Key(';', MOD, () => {
-  if ( VERBOSE ) { movementModal( 'bottom left' ); }
+  if ( VERBOSE ) { movementModal( 'bottom left of next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main()).bottomLeft);
+});
+
+// Move focused window to corners of next display
+var topRightND = new Key(']', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'top right of next display' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).topRight);
+});
+
+var topLeftND = new Key('[', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'top left' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).topLeft);
+});
+
+var bottomRightND = new Key('\'', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'bottom right' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).bottomRight);
+});
+
+var bottomLeftND = new Key(';', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'bottom left' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).bottomLeft);
 });
 
 // Maximize window (not fullscreen)
 var maximizeWindow = new Key('return', MOD, () => {
   if ( VERBOSE ) { movementModal( 'Maximizing', true); }
   Window.focused().setFrame(windowLocations(Screen.main()).full);//.maximize();
+});
+
+// Maximize window (not fullscreen) on next display
+var maximizeWindowND = new Key('return', MOD_D, () => {
+  if ( VERBOSE ) { movementModal( 'next display' ); }
+  Window.focused().setFrame(windowLocations(Screen.main().next()).full);//.maximize();
 });
 
 let fullscreenWindow = new Key('f', MOD, () => {

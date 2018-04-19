@@ -1,5 +1,6 @@
-const MOD = ['alt', 'ctrl', 'cmd'];
-const MOD_S = [...MOD, 'shift'];
+const MOD = ['ctrl', 'cmd'];
+const MOD_S = [...MOD, 'alt'];
+const MOD_D = [...MOD, 'shift'];
 let VERBOSE = true;
 const HALF_CORRECTION = -2; // Fix padding issues for half screen windows
 
