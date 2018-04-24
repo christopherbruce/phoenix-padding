@@ -26,19 +26,19 @@ let focus = ( direction ) => {
 }
 
 // Get focus on window in direction
-var focusEast = new Key('right', MOD_S, () => {
+var focusEast = new Key('pageDown', MOD, () => {
     focus( 'east' );
 });
 
-var focusNorth = new Key('up', MOD_S, () => {
+var focusNorth = new Key('home', MOD, () => {
     focus( 'north' );
 });
 
-var focusWest = new Key('left', MOD_S, () => {
+var focusWest = new Key('forwardDelete', MOD, () => {
     focus( 'west' );
 });
 
-var focusSouth = new Key('down', MOD_S, () => {
+var focusSouth = new Key('end', MOD, () => {
     focus( 'south' );
 });
 

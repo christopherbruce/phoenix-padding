@@ -1,6 +1,5 @@
-const MOD = ['ctrl', 'cmd'];
-const MOD_S = [...MOD, 'alt'];
-const MOD_D = [...MOD, 'shift'];
+const MOD = ['alt', 'ctrl', 'cmd'];
+const MOD_S = [...MOD, 'shift'];
 let VERBOSE = true;
 const HALF_CORRECTION = -2; // Fix padding issues for half screen windows
 
@@ -10,12 +9,13 @@ var scr = Screen.main().flippedVisibleFrame();
 var paddingTop = 15;
 var paddingLeft = 15;
 var paddingRight = 30;
-var paddingBottom = 25;
+var paddingBottom = 35;
 var paddingCenter = 10;
 var paddingMiddle = 20;
 
 const focusIgnoredApps = [
-  "iTerm2"
+  "iTerm2",
+  "Finder"
 ];
 
 var windowLocations = function(scr) {

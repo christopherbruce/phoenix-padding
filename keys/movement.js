@@ -29,12 +29,12 @@ var rightHalf = new Key('right', MOD, () => {
 });
 
 // Move focused window to left or right half of next display
-var leftHalfND = new Key('left', MOD_D, () => {
+var leftHalfND = new Key('left', MOD_S, () => {
   if ( VERBOSE ) { movementModal( 'left half of next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main().next()).left);
 });
 
-var rightHalfND = new Key('right', MOD_D, () => {
+var rightHalfND = new Key('right', MOD_S, () => {
   if ( VERBOSE ) { movementModal( 'right half of next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main().next()).right);
 });
@@ -87,27 +87,6 @@ var bottomLeft = new Key(';', MOD, () => {
   Window.focused().setFrame(windowLocations(Screen.main()).bottomLeft);
 });
 
-// Move focused window to corners of next display
-var topRightND = new Key(']', MOD_D, () => {
-  if ( VERBOSE ) { movementModal( 'top right of next display' ); }
-  Window.focused().setFrame(windowLocations(Screen.main().next()).topRight);
-});
-
-var topLeftND = new Key('[', MOD_D, () => {
-  if ( VERBOSE ) { movementModal( 'top left' ); }
-  Window.focused().setFrame(windowLocations(Screen.main().next()).topLeft);
-});
-
-var bottomRightND = new Key('\'', MOD_D, () => {
-  if ( VERBOSE ) { movementModal( 'bottom right' ); }
-  Window.focused().setFrame(windowLocations(Screen.main().next()).bottomRight);
-});
-
-var bottomLeftND = new Key(';', MOD_D, () => {
-  if ( VERBOSE ) { movementModal( 'bottom left' ); }
-  Window.focused().setFrame(windowLocations(Screen.main().next()).bottomLeft);
-});
-
 // Maximize window (not fullscreen)
 var maximizeWindow = new Key('return', MOD, () => {
   if ( VERBOSE ) { movementModal( 'Maximizing', true); }
@@ -115,7 +94,7 @@ var maximizeWindow = new Key('return', MOD, () => {
 });
 
 // Maximize window (not fullscreen) on next display
-var maximizeWindowND = new Key('return', MOD_D, () => {
+var maximizeWindowND = new Key('return', MOD_S, () => {
   if ( VERBOSE ) { movementModal( 'next display' ); }
   Window.focused().setFrame(windowLocations(Screen.main().next()).full);//.maximize();
 });
